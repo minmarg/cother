@@ -1,0 +1,4 @@
+[Project]
+Name=cother
+#Manager=KDevCMakeManager
+VersionControl=kdevgit
