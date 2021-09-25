@@ -1,4 +1,4 @@
-## COMER options
+## COTHER options
 ##
 
 [OPTIONS]
@@ -53,6 +53,35 @@ MINALNPOS = 10
 #    Gonnet -- Gonnet matrix
 SUBMAT = Gonnet
 
+## Position-specific distance distribution options:
+##
+#   Indivisible fragment of consecutive distance        [1-20]
+#   values in dynamic programming when calculating
+#   similarity between two distance distributions
+#   (programs: adddist, cother)
+DSTSEGM = 6
+#   Number of positions in sequence used as the         [1-20]
+#   threshold for penalizing missing values (below)
+#   (programs: adddist)
+DSTNPOS = 12
+#   Distance penalty in Angstroms for missing           [1-64]
+#   values in a region separated by less than 
+#   DSTNPOS positions in sequence from the main 
+#   diagonal
+#   (programs: adddist)
+DSTSEP6 = 12
+#   Distance penalty in Angstroms for a long           [1-255]
+#   gap of missing values of a length of more 
+#   than DSTNPOS positions in sequence from the
+#   main diagonal; a value of 255 translates to a 
+#   negative score
+#   (programs: adddist)
+DSTGAPL = 24
+#   Number of positions from the main diagonal          [1-20]
+#   defining the distance processing-free band
+#   (programs: adddist)
+DSTFREE = 3
+
 ## Cluster data usage:
 ##
 #   Score adjustment
@@ -67,6 +96,11 @@ SUPCLT = 5
 ADJWGT = 0.33
 #   Weight for auxiliary scores                         (0.-1.)
 cADJWGT = 0.33
+
+## Distance distribution match scores
+##
+#   Weight of match scores (0 -- disables them)         [0.-1.)
+DDMSWGT = 0.2
 
 ## Normal vector scores
 ##

@@ -10,7 +10,7 @@ use Getopt::Long;
 my  $MYPROGNAME = basename( $0 );
 my  $instpsipred = '/share/install/psipred';
 my  $instblastplus = '/share/install/ncbi-blast/ncbi-blast-2.2.23+';
-my  $instcomer = '/home/mindaugas/projects/share/comer';
+my  $instcother = '/home/mindaugas/projects/share/cother';
 
 my  $usage = <<EOIN;
 
@@ -26,7 +26,7 @@ Parameters:
 
 --in  <alignment>  Filename of multiple sequence alignment
 --out <output>     Output file of SS predictions
---p <options>      Options file from the `comer' package (Optional)
+--p <options>      Options file from the package (Optional)
 --select           Select representative sequences from multiple alignment
                    before predicting SS
 --noflush          Do not flush temporary files
@@ -34,8 +34,8 @@ Parameters:
            default=$instpsipred
 --blast <path>     Installation path of `BLAST+'
            default=$instblastplus
---comer <path>     Installation path of `comer'
-           default=$instcomer
+--this <path>      Installation path of the package
+           default=$instcother
 --help             This text
 
 EOIN
@@ -54,7 +54,7 @@ my  $result = GetOptions(
                'p=s'       => \$OPTIONS,
                'psipred=s' => \$instpsipred,
                'blast=s'   => \$instblastplus,
-               'comer=s'   => \$instcomer,
+               'this=s'    => \$instcother,
                'select'    => sub { $SELECTS = 1; },
                'noflush'   => sub { $NOFLUSH = 1; },
                'help|h'    => sub { print $usage; exit( 0 ); }
@@ -69,16 +69,16 @@ die "ERROR: Input alingment file does not exist or is invalid." unless( $INFILE 
 
 die "ERROR: PSIPRED directory does not exist." unless( $instpsipred && -d $instpsipred );
 die "ERROR: BLAST+ directory does not exist." unless( $instblastplus && -d $instblastplus );
-die "ERROR: `comer' directory does not exist." unless(( $instcomer && -d $instcomer )|| !$SELECTS );
+die "ERROR: Installation directory does not exist: $instcother" unless(( $instcother && -d $instcother )|| !$SELECTS );
 
 $INFILE =~ s/^\s*//; $INFILE =~ s/\s*$//; $INFILE =~ s/"//;
 $OUTFILE =~ s/^\s*//; $OUTFILE =~ s/\s*$//; $OUTFILE =~ s/"//;
 $OPTIONS =~ s/^\s*//; $OPTIONS =~ s/\s*$//; $OPTIONS =~ s/"//;
 $instpsipred =~ s/^\s*//; $instpsipred =~ s/\s*$//; $instpsipred =~ s/"//;
 $instblastplus =~ s/^\s*//; $instblastplus =~ s/\s*$//; $instblastplus =~ s/"//;
-$instcomer =~ s/^\s*//; $instcomer =~ s/\s*$//; $instcomer =~ s/"//;
+$instcother =~ s/^\s*//; $instcother =~ s/\s*$//; $instcother =~ s/"//;
 
-my  $select = "$instcomer/bin/select";
+my  $select = "$instcother/bin/select";
 
 my  $makeblastdb = "$instblastplus/bin/makeblastdb";
 my  $psiblast = "$instblastplus/bin/psiblast";
@@ -94,7 +94,7 @@ my  $ppweights_p2 = "$instpsipred/data/weights_p2.dat";
 
 printf( STDERR "\nWARNING: Assuming PSIPRED version >=3.0\n\n");
 
-die "ERROR: `comer' executable `select' does not exist." unless(( -e $select || -e "${select}.exe")|| !$SELECTS );
+die "ERROR: Executable `select' from the package not found." unless(( -e $select || -e "${select}.exe")|| !$SELECTS );
 die "ERROR: Options file does not exist." unless(( !$OPTIONS || -e "$OPTIONS" )|| !$SELECTS );
 
 die "ERROR: BLAST+ executable `makeblastdb' does not exist." unless( -e $makeblastdb || -e "${makeblastdb}.exe");

@@ -8,7 +8,7 @@ updirname=$( dirname $dirname )
 
 INSTPSIPRED="/share/install/psipred"
 INSTBLASTP="/share/install/ncbi-blast/ncbi-blast-2.2.23+"
-INSTCOMER="$updirname"
+INSTCOTHER="$updirname"
 INPUT=
 OUTPUT=
 OPTIONS=''
@@ -65,23 +65,23 @@ if [[ ! -f "$INPUT" ]]; then echo "ERROR: Input file not found: $INPUT"; exit 1;
 
 if [[ ! -d "$INSTPSIPRED" ]]; then echo "ERROR: Directory does not exists: $INSTPSIPRED"; exit 1; fi
 if [[ ! -d "$INSTBLASTP" ]]; then echo "ERROR: Directory does not exists: $INSTBLASTP"; exit 1; fi
-if [[ ! -d "$INSTCOMER" ]]; then echo "ERROR: Directory does not exists: $INSTCOMER"; exit 1; fi
+if [[ ! -d "$INSTCOTHER" ]]; then echo "ERROR: Directory does not exists: $INSTCOTHER"; exit 1; fi
 
-makepro="$INSTCOMER/bin/makepro"
-ssp="$INSTCOMER/bin/ssp2.pl"
-inssp="$INSTCOMER/bin/inssp2.pl"
+makepro="$INSTCOTHER/bin/makepro"
+ssp="$INSTCOTHER/bin/ssp2.pl"
+inssp="$INSTCOTHER/bin/inssp2.pl"
 SSFILE="$OUTPUT.ss"
 
-if [[ ! -f "$makepro" ]]; then echo "ERROR: Executable \`makepro' from the \`comer' package not found: $makepro"; exit 1; fi
-if [[ ! -f "$ssp" ]]; then echo "ERROR: A perl script from the \`comer' package not found: $ssp"; exit 1; fi
-if [[ ! -f "$inssp" ]]; then echo "ERROR: A perl script from the \`comer' package not found: $inssp"; exit 1; fi
+if [[ ! -f "$makepro" ]]; then echo "ERROR: Executable \`makepro' from the package not found: $makepro"; exit 1; fi
+if [[ ! -f "$ssp" ]]; then echo "ERROR: A perl script from the package not found: $ssp"; exit 1; fi
+if [[ ! -f "$inssp" ]]; then echo "ERROR: A perl script from the package not found: $inssp"; exit 1; fi
 
 cmd="$makepro $VERBOSE -i $INPUT -o $OUTPUT $OPTIONS"
 [[ -n "$VERBOSE" ]] && echo $cmd
 eval $cmd || exit 1
 
 cmd="$ssp --in $INPUT --out $SSFILE $OPTIONS $NOSELECT $NOFLUSH "
-cmd+="--psipred $INSTPSIPRED --blast $INSTBLASTP --comer $INSTCOMER"
+cmd+="--psipred $INSTPSIPRED --blast $INSTBLASTP --this $INSTCOTHER"
 [[ -n "$VERBOSE" ]] && echo $cmd
 eval $cmd || exit 1
 
