@@ -27,7 +27,7 @@ Institute of Biotechnology, Vilnius University
    note, however, that COTHER was tested on and the binaries 
    are provided for the following platforms:
 
-  *  Linux x64 (64 bit)
+  *  Linux x64
 
    COTHER was also compiled with the `clang` version 6 compiler and is
    expected to install and run on macOS.
@@ -237,7 +237,7 @@ Institute of Biotechnology, Vilnius University
 
    For convenience, an up-to-date COTHER profile database for PDB70 is 
    available for download at:
-[//]: #   "[https://sourceforge.net/projects/comer2/files/cother-profile-databases](https://sourceforge.net/projects/comer2/files/cother-profile-database)"
+[//]: #   (https://sourceforge.net/projects/comer2/files/cother-profile-databases(https://sourceforge.net/projects/comer2/files/cother-profile-database))
 
 # Final Notes
 
