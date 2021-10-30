@@ -224,20 +224,20 @@ Institute of Biotechnology, Vilnius University
    The database profiles can be constructed by first
 
   *  making distance files in the format specified in 
-   [Distance map prediction](##distance-map-prediction) for each protein 
+   [Distance map prediction](#distance-map-prediction) for each protein 
    structure using the structure and corresponding COMER2 profile as 
    input to the programs `infer/promage4cother_519.py` and `infer/msk2dst.py` 
    from the [ROPIUS0](https://github.com/minmarg/ropius0) software package
 
   *  and combining the inter-residue distances with the corresponding COMER2
    profiles using `batchadddist.py` or `adddist` as specified in 
-   [Distance map prediction](##distance-map-prediction).
+   [Distance map prediction](#distance-map-prediction).
 
 # COTHER Profile database availability
 
    For convenience, an up-to-date COTHER profile database for PDB70 is 
    available for download at:
-[//]: #   ([https://sourceforge.net/projects/comer2/files/cother-profile-databases](https://sourceforge.net/projects/comer2/files/cother-profile-database))
+[//]: #   "[https://sourceforge.net/projects/comer2/files/cother-profile-databases](https://sourceforge.net/projects/comer2/files/cother-profile-database)"
 
 # Final Notes
 
