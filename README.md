@@ -1,28 +1,32 @@
-COTHER2, a cross-platform software package for
-protein remote homology search and threading
+COTHER2, a protein remote homology search and threading tool
 
 (C)2020-2021 Mindaugas Margelevicius,
 Institute of Biotechnology, Vilnius University
 
 # Description
 
-   The COTHER method based on sequence profile-profile comparison is one of
-   the most sensitive and accurate computational tools developed for protein
-   alignment and homology search. COTHER version 2 represents one
-   of the fastest implementations of calculations for protein threading. 
-   High COTHER performance is achieved by harnessing the
-   power of the Graphics processing unit (GPU). 
+   COTHER is a fast deep learning-based threading method for protein homology 
+   search and alignment generation.
+   COTHER employs the [COMER2](https://github.com/minmarg/comer2) 
+   GPU-accelerated search engine but produces alignments by integrating 
+   inter-residue distance map comparison with profile-profile comparison. 
+   For distance map comparison, COTHER evaluates how closely predicted 
+   inter-residue distances for a query match the distances observed in a 
+   protein structure.
+   Hence, COTHER integrates sensitive homology detection by COMER2 and 
+   identification of common structural features predicted by a deep learning 
+   framework. 
+   This combination makes homology search more sensitive and accurate.
 
    COTHER is licensed under GNU General Public License version 3. Please find
-   the LICENSE and COPYING files included in the software package.
+   the LICENSE and COPYING files.
 
 # Available Platforms
 
-   The COTHER source code should compile and run on Linux, MS Windows, and 
-   macOS. Please note, however, that COTHER was tested on and the binaries 
+   The COTHER source code should compile and run on Linux and macOS. Please 
+   note, however, that COTHER was tested on and the binaries 
    are provided for the following platforms:
 
-  *  MS Windows 64 (64 bit)
   *  Linux x64 (64 bit)
 
    COTHER was also compiled with the `clang` version 6 compiler and is
@@ -34,37 +38,18 @@ Institute of Biotechnology, Vilnius University
      above
   *  2 GB of RAM or more
 
-# Getting the COTHER Software
-
-   The package is available at:
-
-   [https://github.com/minmarg/cother](https://github.com/minmarg/cother)
-
-   The Docker image will be available at:
-
-   https:\//hub.docker.com/r/minmar/cother
-
 # Structure of the Package
 
    The main directories are described below:
 
   *  build -- an empty directory to contain built files.
 
-  *  MS_Windows_installer -- contains an installer file for MS Windows.
-
-  *  Linux_installer -- this directory contains the necessary files to 
+  *  Linux\_installer -- this directory contains the necessary files to 
      install the prebuilt COTHER software on Linux.
 
   *  src -- the directory of the source files.
 
 # Installation of pre-compiled binaries
-
-   On MS Windows, run the installer:
-
-     MS_Windows_installer\COTHER-installer1.msi
-
-   NOTE: system requirements for the COTHER software installed on Windows are 
-   NVIDIA driver version >=425.25 and CUDA version >=10.1.
 
    On Linux, run the shell script and follow the instructions:
 
@@ -74,27 +59,6 @@ Institute of Biotechnology, Vilnius University
    NVIDIA driver version >=418.87 and CUDA version >=10.1.
 
 # Installation from source code
-
-   ## Installation on MS Windows
-
-   ### Software requirements
-
-   To successfully build and install the COTHER software from the source code
-   on MS Windows, these tools are required to be installed:
-
-  *  CMake version 3.8 or greater (free software)
-
-  *  Visual C++ compiler, e.g., Visual Studio Community (free for open 
-     source projects; COTHER is an open source project)
-
-  *  [the NVIDIA CUDA toolkit](https://developer.nvidia.com/cuda-downloads) version 10.0 or greater 
-     (free software)
-
-   ### Installation
-
-   Run the command (batch) file:
-
-     BUILD_and_INSTALL_win64.cmd
 
    ## Installation on Linux and macOS
 
@@ -118,103 +82,169 @@ Institute of Biotechnology, Vilnius University
 
      BUILD_and_INSTALL_unix.sh
 
-# Getting Started
+# Main executables
 
-   The COTHER software runs on CUDA-capable GPU devices. An appropriate
-   NVIDIA driver must have been installed. (It can also be installed during
-   the installation of the CUDA toolkit; see "Installation from source 
-   code.")
+   The COTHER software (`cother`) runs on CUDA-capable GPU devices. 
+   An appropriate NVIDIA driver must have been installed. (It can also be 
+   installed during the installation of the CUDA toolkit; see 
+   "Installation from source code.")
 
    The software package contains four main programs in the bin directory in
    the installation path:
 
-  *  makepro and makepro.sh (makepro.cmd on MS Windows), developed for
-     making COTHER profiles. It is recommended to use makepro.sh for enriching
-     profiles with secondary structure predictions. makepro.sh, however,
-     requires the external packages PSIPRED and PSI-BLAST to be installed.
-     makepro and makepro.sh (makepro.cmd) make profiles in text format.
-     Profiles, therefore, can be transferred between different platforms.
+  *  `makepro` and `makepro.sh`, developed for making COMER2(!) profiles. 
+   These programs can be found in the 
+   [COMER2](https://github.com/minmarg/comer2) software package but are 
+   added here for convenience.
+   It is recommended to use makepro.sh for enriching profiles with 
+   secondary structure predictions.
+   `makepro` and `makepro.sh` make COMER2 profiles in text format.
 
-  *  makedb is developed for making a COTHER profile database to be searched.
-     makedb makes output profile databases in text format. They are also 
-     cross-platform portable.
+  *  `makecov`, calculate weighted cross-covariance matrix between the 
+   positions of multiple sequence alignment (MSA).
+   This matrix and the COMER2 profile are used for predicting an 
+   inter-residue distance map using the 
+   [ROPIUS0](https://github.com/minmarg/ropius0) deep learning framework.
 
-  *  db2bin, developed for converting a COTHER profile database to binary
-     format. For an n-fold read speedup, it is highly RECOMMENDED to 
-     convert a profile database using db2bin before conducting homology
-     search with the `cother` program. Please note that the output of db2bin
-     is platform-dependent, and db2bin should be invoked on every platform.
+  *  `adddist`, this program is used to add inter-residue distances 
+   predicted by [ROPIUS0](https://github.com/minmarg/ropius0), or another 
+   tool, to a COMER2 profile and produce a COTHER profile.
 
-  *  cother, the main program for homology search/threading using one or more GPUs.
+  *  `batchadddist.py`, make COTHER profiles in bulk given distance files and 
+   COMER2 profiles. This utility is useful when generating COTHER profiles
+   for database construction.
 
-   Assuming that a query profile myprofile.pro and a profile database mydb
-   have been obtained, the simplest way to run `cother` is to type:
+  *  `makedb`, make a COTHER profile database to be searched.
+   `makedb` makes output profile databases in text format. They are
+   cross-platform portable.
 
-     cother -i myprofile.pro -d mydb -o my_output_directory
+  *  db2bin, convert a COTHER profile database to binary format. 
+   Only this format (i.e., `makedb` + `db2bin`) is valid for searching 
+   using the `cother` program.
+   Please note that the output of `db2bin` is platform-dependent, and 
+   `db2bin` should be invoked on every platform.
 
-   where my_output_directory is an output directory to store output
+  *  `cother`, the main program for homology search/threading using one or 
+   more GPUs.
+
+# Getting Started
+
+   Homology search using COTHER corresponds to searching a database of 
+   COTHER profiles with one or more query COTHER profiles. 
+
+   Assume that a query profile `myprofile.tpro` and a profile database 
+   `mydb[.bin]` have been obtained. Then the simplest way to run 
+   `cother` is to type:
+
+     cother -i myprofile.tpro -d mydb -o my_output_directory
+
+   where `my_output_directory` is an output directory to store output
    alignments files for each query profile present in the input file
-   myprofile.pro.
+   `myprofile.tpro`.
 
    `cother` allows for multiple queries in the input file. In that case,
-   profiles made using makepro or makepro.sh (makepro.cmd) should be stacked
-   one on top of the other. It is also possible to search all profiles in
-   one profile database against the profiles of another one:
+   profiles should be stacked one on top of the other. It is also possible to 
+   search profile(s) against multiple profile databases:
 
-     cother -i mydb1 -d mydb2 -o my_output_directory
+     cother -i myprofile.tpro -d mydb1,mydb2,mydb3 -o my_output_directory
 
    or perform an all-against-all comparison:
 
      cother -i mydb -d mydb -o my_output_directory
 
-   Mutually aligning two profiles requires making a database of one of the
-   two profiles:
-
-     cother -i myprofile1.pro -d myprofile2_db -o my_output_directory
-
    `cother` search, as well as the process of making profiles, can be
-   controlled with options read from the options file options.txt in the var
+   controlled with options read from the options file options.txt in the `var`
    directory in the installation path:
 
      cother -i myprofile.pro -d mydb -o my_output_directory -p options.txt
 
-   The user can copy the options file options.txt to a preferred location
+   The user can copy the options file `options.txt` to a preferred location
    and modify option values.
 
-# Input Multiple Alignment
+  ## Profile construction
 
-   The program makepro accepts input multiple alignment files in FASTA or
-   STOCKHOLM format.
+   A standard way to construct a COTHER profile from an MSA `mymsa.afa` 
+   (e.g., in aligned FASTA format) and using 
+   [ROPIUS0](https://github.com/minmarg/ropius0) for inter-residue distance 
+   map prediction includes the following steps:
 
-   The FASTA format can be described as follows. The section of each 
-   sequence begins with a description line, whose first character is a ">"
-   delimiter. Sequence data begins on the next line and can occupy multiple
-   lines. An example of a multiple alignment in FASTA is provided below:
+  *  Make a COMER2 profile:
+
+    makepro.sh -i mymsa.afa -o myprofile.pro
+
+  *  Predict distances using ROPIUS0 (e.g., Docker container), assuming 
+   `path_to_ropius0` is its installation directory:
+
+    path_to_ropius0/srvs/distopred.sh -i mymsa.afa -o resdir
+
+  *  Make a COTHER profile based on the constructed COMER2 profile 
+   `myprofile.pro` and predicted distances `mymsa__pred__nonavg.prb` 
+   found in the ROPIUS0 output directory `resdir`:
+
+    adddist -v -i resdir/mymsa__pred__nonavg.prb -j myprofile.pro -o myprofile.tpro --dst=3,5,7 --prb=0.05
+
+  ## Distance map prediction
+
+   The [ROPIUS0](https://github.com/minmarg/ropius0) deep learning 
+   framework can be used to predict an inter-residue distance map for a query 
+   protein, as demonstrated above.
+
+   Distances can also be predicted by any other suitable tool. 
+   The format that `adddist` recognizes is the following. 
 
 ```
->d1qhka_ d.100.1.2 (A:) N-terminal domain of RNase HI...
-GNFYAVRKGRE--T---G--------IYNTW---NECKNQVDGYG---GAIYKKFNSYEQAKSFLG
->gi|28379120|ref|NP_786012.1|:(2-47) ribonuclease H (putative)...
--KYYAVRKGRQ--P---G--------IYRTW---PETQKQVSGYP---QAQYKSFTSEKDAQDFMA
->gi|84386727|ref|ZP_00989753.1|:(2-47) hypothetical ribonuclease HI...
--KYYVVWKGRT--P---G--------IFTTW---NECKSQVDGFA---GARYKSFPTLGEAESAFG
->gi|116492108|ref|YP_803843.1|:(2-47) RNase H with double-stranded...
--KFYAVKKGRK--P---G--------LYLTW---DAAKQQVDGFA---GAVYKSFLTKAEAEEWMA
->gi|6323890|ref|NP_013961.1|:(1-47) Ribonuclease H1...
-GNFYAVRKGRE--T---G--------IYNTW---NECKNQVDGYG---GAIYKKFNSYEQAKSFLG
+#R1 R2       Dst  Prob
+1 7         11.0 0.094
+1 8         15.0 0.087
+1 9         14.0 0.080
+1 10        11.0 0.075
+...
 ```
 
-   The package also contains the perl script blast2fa.pl to convert
-   (PSI-)BLAST output to FASTA format. Please type `blast2fa.pl -h` for more
-   information.
+   The first two columns give residue (one-based) indices followed by 
+   distance information (distance(s), optional probabilities). 
+   The file is required to provide the ordered upper triangle of the 
+   distance matrix.
+
+   The distances saved as a file (e.g., mymsa\_\_pred.dst) can then be 
+   combined with a COMER2 profile myprofile.pro to make a COTHER profile:
+
+    adddist -v -i mymsa__pred.dst -j myprofile.pro -o myprofile.tpro --dst=3
+
+# COTHER Profile database construction
+
+   Profile-profile search using COTHER employs a comparison of a 2D 
+   inter-residue distance map predicted for a query with the map 
+   intrinsic to a protein structure. The comparison of a profile with a 
+   structure is more sensitive than comparing only profiles but requires the 
+   structure of a target protein to be known.
+
+   The COTHER profiles of a database are expected to represent protein 
+   structures. 
+   The database profiles can be constructed by first
+
+  *  making distance files in the format specified in 
+   [Distance map prediction](##distance-map-prediction) for each protein 
+   structure using the structure and corresponding COMER2 profile as 
+   input to the programs `infer/promage4cother_519.py` and `infer/msk2dst.py` 
+   from the [ROPIUS0](https://github.com/minmarg/ropius0) software package
+
+  *  and combining the inter-residue distances with the corresponding COMER2
+   profiles using `batchadddist.py` or `adddist` as specified in 
+   [Distance map prediction](##distance-map-prediction).
+
+# COTHER Profile database availability
+
+   For convenience, an up-to-date COTHER profile database for PDB70 is 
+   available for download at:
+[//]: #   ([https://sourceforge.net/projects/comer2/files/cother-profile-databases](https://sourceforge.net/projects/comer2/files/cother-profile-database))
 
 # Final Notes
 
    All executables in the COTHER software package invoked with the "-h"
    option print a list of valid command-line options.
 
-# References
-
+[//]: # (# References)
 
 # Funding
 
