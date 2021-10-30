@@ -237,7 +237,7 @@ Institute of Biotechnology, Vilnius University
 
    For convenience, an up-to-date COTHER profile database for PDB70 is 
    available for download at:
-[//]: #   (https://sourceforge.net/projects/comer2/files/cother-profile-databases(https://sourceforge.net/projects/comer2/files/cother-profile-database))
+<!--   [https://sourceforge.net/projects/comer2/files/cother-profile-databases](https://sourceforge.net/projects/comer2/files/cother-profile-database) -->
 
 # Final Notes
 
