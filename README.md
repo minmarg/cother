@@ -1,4 +1,4 @@
-COTHER2, a protein remote homology search and threading tool
+COTHER, a protein remote homology search and threading tool
 
 (C)2020-2021 Mindaugas Margelevicius,
 Institute of Biotechnology, Vilnius University
