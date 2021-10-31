@@ -21,6 +21,20 @@ Institute of Biotechnology, Vilnius University
    COTHER is licensed under GNU General Public License version 3. Please find
    the LICENSE and COPYING files.
 
+<!--
+# Web service
+
+   COTHER is available as a web service hosted on 
+   [The COMER web server](https://bioinformatics.lt/comer), 
+   where the intermediate steps to the service functionality, including 
+   profile construction and profile-profile search, are transparent to the 
+   user. 
+
+   For local use, an up-to-date 
+   [PDB70 COTHER profile database](#cother-profile-database-availability) is 
+   available.
+-->
+
 # Available Platforms
 
    The COTHER source code should compile and run on Linux and macOS. Please 
@@ -45,9 +59,15 @@ Institute of Biotechnology, Vilnius University
   *  build -- an empty directory to contain built files.
 
   *  Linux\_installer -- this directory contains the necessary files to 
-     install the prebuilt COTHER software on Linux.
+   install the prebuilt COTHER software on Linux.
 
   *  src -- the directory of the source files.
+
+  *  [cother-scores-optimizer](https://github.com/minmarg/cother/tree/master/cother-scores-optimizer) -- 
+   COTHER scores optimizer developed for finding optimal parameters for 
+   distance distribution match scores (DDMS) employed by COTHER.
+   COTHER is configured with the optimal DDMS scores found using this 
+   optimizer.
 
 # Installation of pre-compiled binaries
 
@@ -89,7 +109,7 @@ Institute of Biotechnology, Vilnius University
    installed during the installation of the CUDA toolkit; see 
    "Installation from source code.")
 
-   The software package contains four main programs in the bin directory in
+   The software package contains these main programs in the bin directory in
    the installation path:
 
   *  `makepro` and `makepro.sh`, developed for making COMER2(!) profiles. 
@@ -164,7 +184,9 @@ Institute of Biotechnology, Vilnius University
   ## Profile construction
 
    A standard way to construct a COTHER profile from an MSA `mymsa.afa` 
-   (e.g., in aligned FASTA format) and using 
+   (e.g., in 
+   [aligned FASTA format](https://github.com/minmarg/comer2#input-multiple-alignment)) 
+   and using 
    [ROPIUS0](https://github.com/minmarg/ropius0) for inter-residue distance 
    map prediction includes the following steps:
 
@@ -237,14 +259,15 @@ Institute of Biotechnology, Vilnius University
 
    For convenience, an up-to-date COTHER profile database for PDB70 is 
    available for download at:
-<!--   [https://sourceforge.net/projects/comer2/files/cother-profile-databases](https://sourceforge.net/projects/comer2/files/cother-profile-database) -->
+
+<!--   [https://sourceforge.net/projects/cother/files/cother-profile-databases](https://sourceforge.net/projects/cother/files/cother-profile-database) -->
 
 # Final Notes
 
    All executables in the COTHER software package invoked with the "-h"
    option print a list of valid command-line options.
 
-[//]: # (# References)
+<!-- # References -->
 
 # Funding
 
