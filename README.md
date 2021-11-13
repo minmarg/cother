@@ -3,6 +3,24 @@ COTHER, a protein remote homology search and threading tool
 (C)2020-2021 Mindaugas Margelevicius,
 Institute of Biotechnology, Vilnius University
 
+# Table of contents
+
+   [Description](#description)
+<!-- [Web service](#web-service) -->
+   [Available Platforms](#available-platforms)
+   [Hardware requirements](#hardware-requirements)
+   [Structure of the Package](#structure-of-the-package)
+   [Installation of pre-compiled binaries](#installation-of-pre-compiled-binaries)
+   [Installation from source code](#installation-from-source-code)
+   [Main executables](#main-executables)
+   [Getting Started](#getting-started)
+   &nbsp;&nbsp;&nbsp;&nbsp;[Profile construction](#profile-construction)
+   &nbsp;&nbsp;&nbsp;&nbsp;[Distance map prediction](#distance-map-prediction)
+   [COTHER Profile database construction](#cother-profile-database-construction)
+   [COTHER Profile database availability](#cother-profile-database-availability)
+   [Final Notes](#final-notes)
+   [Funding](#funding)
+
 # Description
 
    COTHER is a fast deep learning-based threading method for protein homology 
@@ -260,7 +278,7 @@ Institute of Biotechnology, Vilnius University
    For convenience, an up-to-date COTHER profile database for PDB70 is 
    available for download at:
 
-<!--   [https://sourceforge.net/projects/cother/files/cother-profile-databases](https://sourceforge.net/projects/cother/files/cother-profile-database) -->
+   [https://sourceforge.net/projects/cother/files/cother-profile-databases](https://sourceforge.net/projects/cother/files/cother-profile-databases)
 
 # Final Notes
 
