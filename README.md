@@ -5,20 +5,20 @@ Institute of Biotechnology, Vilnius University
 
 # Table of contents
 
-   [Description](#description)
+   [Description](#description) <br/>
 <!-- [Web service](#web-service) -->
-   [Available Platforms](#available-platforms)
-   [Hardware requirements](#hardware-requirements)
-   [Structure of the Package](#structure-of-the-package)
-   [Installation of pre-compiled binaries](#installation-of-pre-compiled-binaries)
-   [Installation from source code](#installation-from-source-code)
-   [Main executables](#main-executables)
-   [Getting Started](#getting-started)
-   &nbsp;&nbsp;&nbsp;&nbsp;[Profile construction](#profile-construction)
-   &nbsp;&nbsp;&nbsp;&nbsp;[Distance map prediction](#distance-map-prediction)
-   [COTHER Profile database construction](#cother-profile-database-construction)
-   [COTHER Profile database availability](#cother-profile-database-availability)
-   [Final Notes](#final-notes)
+   [Available Platforms](#available-platforms) <br/>
+   [Hardware requirements](#hardware-requirements) <br/>
+   [Structure of the Package](#structure-of-the-package) <br/>
+   [Installation of pre-compiled binaries](#installation-of-pre-compiled-binaries) <br/>
+   [Installation from source code](#installation-from-source-code) <br/>
+   [Main executables](#main-executables) <br/>
+   [Getting Started](#getting-started) <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;[Profile construction](#profile-construction) <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;[Distance map prediction](#distance-map-prediction) <br/>
+   [COTHER Profile database construction](#cother-profile-database-construction) <br/>
+   [COTHER Profile database availability](#cother-profile-database-availability) <br/>
+   [Final Notes](#final-notes) <br/>
    [Funding](#funding)
 
 # Description
