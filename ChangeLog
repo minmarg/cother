@@ -1,5 +1,7 @@
 1.01, December 2020  *  Initial version based on COMER v2.2.4
 2.03, June 2021 * Speed improvements and optimized scores; Searching multiple 
 databases; Skipping large Db profiles which are impossible to align with 
-due to memory limit
+due to memory limit; Taking memory alignment size into consideration when 
+calculating the size of the data to be transferred
+
 
