@@ -6,7 +6,7 @@ Institute of Biotechnology, Vilnius University
 # Table of contents
 
    [Description](#description) <br/>
-<!-- [Web service](#web-service) -->
+   [Web service](#web-service) <br/>
    [Available Platforms](#available-platforms) <br/>
    [Hardware requirements](#hardware-requirements) <br/>
    [Structure of the Package](#structure-of-the-package) <br/>
@@ -39,7 +39,6 @@ Institute of Biotechnology, Vilnius University
    COTHER is licensed under GNU General Public License version 3. Please find
    the LICENSE and COPYING files.
 
-<!--
 # Web service
 
    COTHER is available as a web service hosted on 
@@ -51,7 +50,6 @@ Institute of Biotechnology, Vilnius University
    For local use, an up-to-date 
    [PDB70 COTHER profile database](#cother-profile-database-availability) is 
    available.
--->
 
 # Available Platforms
 
