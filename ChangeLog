@@ -3,5 +3,6 @@
 databases; Skipping large Db profiles which are impossible to align with 
 due to memory limit; Taking memory alignment size into consideration when 
 calculating the size of the data to be transferred
-
-
+2.03.03, September 2022  *  Bug fix in calculating initial memory padding 
+(never happens by the driver allocation model); memory alignment of all fields 
+taken into account when allocating space for db profiles in the beginning

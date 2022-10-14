@@ -2,7 +2,7 @@
 
 echo
 
-MYHOMEDEF=/mnt${HOME:1}/projects/share/cother
+MYHOMEDEF=/data/installed-software/cother
 
 read -ep "Enter COTHER install path: " -i "${MYHOMEDEF}" MYHOME
 
